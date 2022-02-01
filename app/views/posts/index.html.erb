@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+<div class="container">
+
+  </div>
+  <h1>Posts</h1>
+  <%if user_signed_in? %>
+    <%if current_user.is_editor? || current_user.is_admin? %>
+      <%= link_to "New post", new_post_path, class:"btn btn-primary"  %>
+    <%end%>
+  <%end%>
+
+  <div id="posts">
+    <div class="card">
+      <% @posts.each do |post| %>
+        <%= render post %>
+        <p>
+          <%= link_to "Show this post", post %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
