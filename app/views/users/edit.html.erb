@@ -1,0 +1,30 @@
+<div class="container text-center">
+    <h1 class="margin-top"> Your Profile</h1>
+
+    <%= form_with(model: current_user) do |f| %> 
+        <div class="field">
+            <%= f.label :first_name %><br />
+            <%= f.text_field :first_name, autofocus: true %>
+        </div>
+
+        <div class="field">
+            <%= f.label :last_name %><br />
+            <%= f.text_field :last_name, autofocus: true %>
+        </div>
+        <div class="field">
+            <%= f.label :avatar %><br />
+            <%= f.file_field :avatar %>
+        </div>
+        <% if current_user.avatar.attached? %>
+            <%= image_tag url_for(current_user.avatar), height:200 %>
+        <% end %>
+
+        <div class="actions">
+            <%= f.submit "Update Profile", class:"btn btn-primary" %>
+        </div>
+
+        
+    
+    <%end %>
+
+</div>
