@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ show edit update destroy publish unpublish]
   before_action :authenticate_editor!, only: [:new, :create, :update]
-  before_action :authenticate_admin!, only: [:destroy]
+  before_action :authenticate_admin!, only: [:destroy, :publish]
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.ultimos
   end
 
   # GET /posts/1 or /posts/1.json
@@ -57,6 +57,16 @@ class PostsController < ApplicationController
       format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def publish
+    @post.publish!
+    redirect_to @post
+  end
+
+  def unpublish
+    @post.unpublish!
+    redirect_to @post
   end
 
   private

@@ -7,4 +7,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "home#index"
+
+  put "/posts/:id/publish", to: "posts#publish"
+  put "/posts/:id/unpublish", to: "posts#unpublish"
+
 end
