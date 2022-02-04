@@ -1,32 +1,46 @@
-<div class="container-sm">
-    <h1 class="margin-top text-center"> Your Profile</h1>
+<h1 class="text-center"> Your Profile</h1>
 
-    <%= form_with(model: current_user) do |f| %> 
-        <div class="mb-3">
-            <%= f.label :first_name, class:"form-label fs-4" %><br />
-            <%= f.text_field :first_name, autofocus: true,  class:"form-control" %>
-        </div>
+<div class="container grid">
+    <div class="row">
+        <div class="col text-center">
 
-        <div class="mb-3">
-            <%= f.label :last_name, class:"form-label fs-4" %><br />
-            <%= f.text_field :last_name, autofocus: true,  class:"form-control" %>
+            <%= form_with(model: current_user) do |f| %> 
+                <% if current_user.avatar.attached? %>
+                    <%= image_tag url_for(current_user.avatar), height:200 %>
+                <% end %>
         </div>
-        <div class="mb-3">
-            <%= f.label :avatar, class:"form-label fs-4 " %><br />
-            <%= f.file_field :avatar,  class:"form-control", type:"file", id: "formFile"%>
+        <div class="col card">
+            <div class="mb-3">
+                <%= f.label :first_name, class:"form-label fs-4" %><br />
+                <%= f.text_field :first_name, autofocus: true,  class:"form-control" %>
+            </div>
+
+            <div class="mb-3">
+                <%= f.label :last_name, class:"form-label fs-4" %><br />
+                <%= f.text_field :last_name, autofocus: true,  class:"form-control" %>
+            </div>
+            <div class="mb-3">
+                <%= f.label :avatar, class:"form-label fs-4 " %><br />
+                <%= f.file_field :avatar,  class:"form-control", type:"file", id: "formFile"%>
+            </div>
         </div>
-        <div class="mb-3 text-center    ">
-            <% if current_user.avatar.attached? %>
-                <%= image_tag url_for(current_user.avatar), height:200 %>
-            <% end %>
-        </div>
+    </div>
+
 
         <div class="actions">
             <%= f.submit "Update Profile", class:"btn btn-primary" %>
         </div>
-
-        
     
-    <%end %>
+            <%end %>
 
+</div>
+
+<h1 class="text-center"> Your Posts</h1>
+
+<div class="container grid">
+    <div class="row">
+        <div class="col text-center card">
+            <%= render current_user.posts %>
+        </div>
+    </div>
 </div>

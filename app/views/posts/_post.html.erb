@@ -2,7 +2,11 @@
   <p>
     <h3> <%= post.title %>  </h3> 
     <%if user_signed_in? && (current_user.is_admin? || current_user.is_editor?) %>
-     <%= post.state %> 
+        <%if post.state == "published" %>
+          <p style="color:orange"> <%= post.state %>  </p> 
+        <%else %>
+          <p style="color:blue"> <%= post.state %>  </p> 
+        <% end %>
     <%end %>
   </p>
   

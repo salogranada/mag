@@ -1,0 +1,12 @@
+<div class="grey">
+    <div class="row">
+        <div class="col-xs-6">
+            <%= @post.comments.count %> comments
+        </div>
+        <ul>
+            <div class="top-space mb-3">
+                <%= render @post.comments.ultimos %>
+            </div>
+        </ul>
+    </div>
+</div>

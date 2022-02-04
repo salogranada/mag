@@ -2,6 +2,8 @@ class Post < ApplicationRecord
     include AASM
 
     belongs_to :user
+    has_many :comments
+    
     validates :title, presence: :true, uniqueness: :true, length: {minimum:1, maximum:60}
     validates :description, presence: :true
     validates :body, presence: :true

@@ -1,0 +1,12 @@
+<div class= "card" id="<%= dom_id comment %>">
+  <strong class="text-right be-small">  
+    <%= comment.user.first_name %> - (<%= time_ago_in_words(comment.created_at)%> ago)
+  </strong>
+  <p>
+    <%= comment.body %>
+  </p>
+  <%if user_signed_in? && current_user.is_admin? %>
+    <%= button_to "Delete", [@post,comment], class:"btn btn-sm btn-danger" %>
+  <%end %>
+
+</div>

@@ -37,3 +37,15 @@
     <%end%>
   </div>
 </div>
+
+
+<div class="container">
+    <h4> Comments</h4>
+    <div class="mb-3">
+      <%= render 'comments/form' %> 
+    </div>
+    <div class="mb-3">
+      <h5> Previous Comments: </h5>
+      <%= render "posts/comments" %>
+    </div>
+</div>
